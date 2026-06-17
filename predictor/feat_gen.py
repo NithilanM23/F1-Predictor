@@ -15,10 +15,10 @@ from .encoders import le_driver,le_track
 def generate_features_for_inference(driver_name, track_name, starting_grid, race_history_df=df_fin, year=2025):
     # Define confidence & reliability dictionaries (or import them globally)
     constructor_reliabilities = {
-    "Ferrari": 0.94, "Red Bull": 0.93, "Mercedes": 0.90,
-    "Aston Martin": 0.5902335456475584, "Williams": 0.75, "Sauber": 0.3952755905511811,
-    "RB": 0.4553903345724907, "McLaren": 0.98, "Alpine": 0.6018518518518519,
-    "Haas": 0.34302325581395354
+    "Ferrari": 0.94, "Red Bull": 0.93, "Mercedes": 0.94,
+    "Aston Martin": 0.2, "Williams": 0.75, "Sauber": 0.3952755905511811,
+    "RB": 0.4553903345724907, "McLaren": 0.93, "Alpine": 0.6018518518518519,
+    "Haas": 0.34302325581395354,'Cadillac':0.3, 'Audi':0.43
         }
 
     driverconfidences = {
@@ -65,7 +65,8 @@ def generate_features_for_inference(driver_name, track_name, starting_grid, race
     "Saudi Arabia": 0.6,         # High-speed street circuit, tricky overtakes
     "Miami": 0.6,                # Narrow & stop-start
     "Las Vegas": 0.4,            # Long straights, slow corners = decent
-    "Emilia-Romagna": 0.75       # Same as Imola (duplication handled)
+    "Emilia-Romagna": 0.75,      # Same as Imola (duplication handled)
+    'Barcelona-Catalunya': 0.7
       }
 
 
@@ -113,7 +114,7 @@ def generate_features_for_inference(driver_name, track_name, starting_grid, race
 
     # IsTopTeam (static based on 2024 known strong performers)
     d_names = [
-        'Max Verstappen', 'Yuki Tsunoda', 'Lando Norris', 'Kimi Antonelli',
+        'Max Verstappen', 'Isack Hadjar', 'Lando Norris', 'Kimi Antonelli',
         'Charles Leclerc', 'George Russell', 'Lewis Hamilton', 'Oscar Piastri'
     ]
     is_top_team = 1 if driver_name in d_names else 0
