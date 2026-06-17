@@ -6,9 +6,12 @@ from django.shortcuts import render
 from predictor.feat_gen import generate_features_for_inference
 from .encoders import le_driver, le_track, le_team  # if used
 
+import xgboost as xgb
+
 # Load model once (at server start)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model = joblib.load(os.path.join(BASE_DIR, "xgboost_model.pkl"))
+model = xgb.XGBRegressor()
+model.load_model(os.path.join(BASE_DIR, "xgboost_model.json"))
 
 
 def explain_prediction(features_df):
